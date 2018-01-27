@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 
 import bus.notifier.busnotifier.R;
 
-public class FavoritesScene extends Fragment {
+public class RingScene extends Fragment {
 
-    public FavoritesScene() {
+    public RingScene() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_favorites_scene, container, false);
+        return inflater.inflate(R.layout.fragment_ring_scene, container, false);
     }
 
 }

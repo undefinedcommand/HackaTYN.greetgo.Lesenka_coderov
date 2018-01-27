@@ -48,7 +48,7 @@ public class MapScene extends Fragment implements OnMapReadyCallback, GoogleApiC
 
     private GeoFire mapHandler;
 
-    private Location locationServices;
+    private Location lastLocation;
 
     private Marker currentLocation;
 
@@ -73,7 +73,15 @@ public class MapScene extends Fragment implements OnMapReadyCallback, GoogleApiC
 
         mapView.getMapAsync(this);
 
+        setInitialLocation();
+
+        updateState();
+
         return view;
+    }
+
+    private void setInitialLocation() {
+
     }
 
     private void updateState() {
@@ -85,11 +93,13 @@ public class MapScene extends Fragment implements OnMapReadyCallback, GoogleApiC
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        locationServices = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        if (locationServices != null) {
-            final double longitude = locationServices.getLongitude();
-            final double latitude = locationServices.getLatitude();
-            currentLocation = mapScreen.addMarker(new MarkerOptions());
+        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (lastLocation != null) {
+            final double longitude = lastLocation.getLongitude();
+            final double latitude = lastLocation.getLatitude();
+            currentLocation = mapScreen.addMarker(new MarkerOptions().position(new LatLng(longitude, latitude)));
+            mapScreen.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(longitude, latitude), 15.0f));
+
         }
     }
 
@@ -102,17 +112,18 @@ public class MapScene extends Fragment implements OnMapReadyCallback, GoogleApiC
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-
+        displayLocation();
+        startLocationAnalyze();
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        googleApiClient.connect();
     }
 
     @Override
     public void onLocationChanged(Location location) {
-
+        lastLocation = location;
     }
 
     @Override
@@ -138,11 +149,6 @@ public class MapScene extends Fragment implements OnMapReadyCallback, GoogleApiC
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mapScreen = googleMap;
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            mapScreen.setMyLocationEnabled(true);
-        }
-        LatLng cityPosition = new LatLng(43.5, 76.5);
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(cityPosition).zoom(10).build();
-        mapScreen.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
     }
 }

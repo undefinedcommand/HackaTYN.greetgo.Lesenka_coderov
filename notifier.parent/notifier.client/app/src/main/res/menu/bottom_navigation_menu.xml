@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/map_item"
-        android:title="@string/map_item" />
+        android:enabled="true"
+        android:icon="@drawable/ic_map"
+        android:title="@string/map_item"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/favorites_item"
-        android:title="@string/favorites_item" />
+        android:id="@+id/reminder_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_rings"
+        android:title="@string/reminder_item"
+        app:showAsAction="ifRoom" />
 </menu>

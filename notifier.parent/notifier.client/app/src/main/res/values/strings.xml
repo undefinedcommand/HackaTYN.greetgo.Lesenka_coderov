@@ -2,6 +2,7 @@
     <string name="app_name">Bus Notifier</string>
     <string name="map_api_key">AIzaSyD96DBRYMTYOKEJg9qPmN5IguZSqrv1rYk</string>
     <string name="map_item">Map</string>
-    <string name="favorites_item">Favorites</string>
+    <string name="reminder_item">Ring</string>
     <string name="history_item">History</string>
+    <string name="app_label">BUS_NOTIFIER</string>
 </resources>
