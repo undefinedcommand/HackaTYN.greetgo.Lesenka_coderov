@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1048304809605",
+    "firebase_url": "https://hackatun.firebaseio.com",
+    "project_id": "hackatun",
+    "storage_bucket": "hackatun.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048304809605:android:56b318e3adaa4d6f",
+        "android_client_info": {
+          "package_name": "bus.notifier.busnotifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048304809605-4uc62d05fmpf45ci26o0s63ujpn9bkot.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bus.notifier.busnotifier",
+            "certificate_hash": "7e82f3ba48790e6e2ac4d32663ba0ef4ff52e2e8"
+          }
+        },
+        {
+          "client_id": "1048304809605-2k8qpr5i4a5v2rh5r1m4j35fqf4u6jkk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9YeLpWDeIP0tRNFwEKbvj1lFlLm4XFMI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048304809605-2k8qpr5i4a5v2rh5r1m4j35fqf4u6jkk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
