@@ -1,6 +1,7 @@
 package notifier.bus.stand.geo_simulation;
 
 import notifier.bus.controller.model.pojo.Location;
+import notifier.bus.stand.register_stand_impl.model.StationDto;
 import notifier.bus.stand.register_stand_impl.model.pojo.Route;
 
 public class GPSsimulator {
@@ -14,20 +15,20 @@ public class GPSsimulator {
     public int waypointCounter = 0;
 
     public Route simulatedRoute = new Route(
-            new Location(48.137413, 11.561020),
-            new Location(48.137370, 11.564539),
-            new Location(48.137449, 11.565000),
-            new Location(48.137578, 11.565311));
+            new StationDto("123", 48.137413, 11.561020),
+            new StationDto("3456", 48.137370, 11.564539),
+            new StationDto("aaa", 48.137449, 11.565000),
+            new StationDto("bbb", 48.137578, 11.565311));
 
     public void move(){
-        Location nextWaypoint = simulatedRoute.waypoints[waypointCounter];
+        Location nextWaypoint = simulatedRoute.waypoints[waypointCounter].location;
         if (GeoHelper.calcGeoDistanceInKm(currentLocation, nextWaypoint) < ARRIVAL_RADIUS_IN_KM) {
             waypointCounter++;
             if (waypointCounter > simulatedRoute.waypoints.length-1) {
                 currentLocation = new Location(initialLatitude, initialLongitude);
                 waypointCounter = 0;
             }
-            nextWaypoint = simulatedRoute.waypoints[waypointCounter];
+            nextWaypoint = simulatedRoute.waypoints[waypointCounter].location;
         }
         System.out.println("Moving to next wayPoint"  + ". Distance = " + GeoHelper.calcGeoDistanceInKm(currentLocation, nextWaypoint) * 1000 + "m");
         double angle = GeoHelper.calcAngleBetweenGeoLocationsInRadians(currentLocation, nextWaypoint);

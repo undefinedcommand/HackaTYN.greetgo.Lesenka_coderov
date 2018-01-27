@@ -11,4 +11,9 @@ public class StationDto {
         this.location = location;
     }
 
+    public StationDto(String name, double lat, double lon) {
+        this.name = name;
+        this.location = new Location(lat, lon);
+    }
+
 }

@@ -4,12 +4,10 @@ import notifier.bus.controller.model.pojo.Location;
 import notifier.bus.stand.enums.DirectionEnum;
 import notifier.bus.stand.register_stand_impl.model.BusDto;
 import notifier.bus.stand.register_stand_impl.model.StationDto;
+import notifier.bus.stand.register_stand_impl.model.pojo.Route;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class Db {
@@ -99,9 +97,51 @@ public class Db {
         b2r.number = 100;
         b2r.id = 4;
 
-        buses.add(b1);
-        buses.add(b1r);
-        buses.add(b2);
-        buses.add(b2r);
+
+        Route r1 = new Route(
+                stations.get(s1),
+                stations.get(s2),
+                stations.get(s3),
+                stations.get(s4),
+                stations.get(s5),
+                stations.get(s6),
+                stations.get(s7),
+                stations.get(s8),
+                stations.get(s9),
+                stations.get(s10),
+                stations.get(s11),
+                stations.get(s12),
+                stations.get(s13)
+                );
+
+        Route r2 = new Route(
+                stations.get(q1),
+                stations.get(q2),
+                stations.get(q3),
+                stations.get(q4),
+                stations.get(q5),
+                stations.get(q6),
+                stations.get(q7)
+        );
+
+        Route r1r = new Route(r1.size());
+        Route r2r = new Route(r2.size());
+
+        System.arraycopy(r1.waypoints, 0, r1r.waypoints, 0, r1.size());
+        System.arraycopy(r2.waypoints, 0, r2r.waypoints, 0, r2.size());
+
+        Collections.reverse(Arrays.asList(r1r.waypoints));
+        Collections.reverse(Arrays.asList(r2r.waypoints));
+
+        b1.route = r1;
+        b1r.route = r1r;
+
+        b2.route = r2;
+        b2r.route = r2r;
+
+        b1.route.print();
+        b1r.route.print();
+        b2.route.print();
+        b2r.route.print();
     }
 }
