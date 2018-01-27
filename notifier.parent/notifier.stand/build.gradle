@@ -1,0 +1,25 @@
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+
+}
+
+dependencies {
+    compile project(':notifier.controller')
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+    // end::actuator[]
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+}
