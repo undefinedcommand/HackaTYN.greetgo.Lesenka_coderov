@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -24,17 +28,22 @@ public class BusRegisterStandImpl implements BusRegister{
 
     @Override
     public List<BusInfo> getBusesList() {
-        List<BusDto> busses = db.buses;
-
-        List response  = busses.stream().map(item -> {
-                    BusInfo busInfo = new BusInfo();
-                    busInfo.from = item.from;
-                    busInfo.to = item.to;
+        List response  = db.buses.stream().filter(distinctByKey(BusDto::getNumber)).map(item -> {
+            BusInfo busInfo = new BusInfo();
+                    busInfo.from = item.from.name;
+                    busInfo.to = item.to.name;
                     busInfo.number = item.number;
+                    busInfo.id = item.id;
                     return busInfo;
                 }
         ).collect(Collectors.toList());
 
         return response;
     }
+
+    public <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
+    }
+
 }

@@ -1,8 +1,9 @@
 package notifier.bus.stand.register_stand_impl.db;
 
+import notifier.bus.controller.model.pojo.Location;
+import notifier.bus.stand.enums.DirectionEnum;
 import notifier.bus.stand.register_stand_impl.model.BusDto;
 import notifier.bus.stand.register_stand_impl.model.StationDto;
-import notifier.bus.stand.register_stand_impl.model.pojo.Location;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ public class Db {
 
     public List<BusDto> buses = new ArrayList();
     public Map<String, StationDto> stations = new HashMap<>();
-    public List<BusDto> activeBusses = new ArrayList<>();
 
 
     public static final String s1 = "Абая-Утеген Батыра";
@@ -34,14 +34,17 @@ public class Db {
     public static final String s14 = "Сатпаева Шагабутдинова";
 
 
+    public static final String q1 = "Жандосова-Сулеймена";
+    public static final String q2 = "Жандосова-Навои";
+    public static final String q3 = "Жандосова-Темирязева";
+    public static final String q4 = "Темирязева-Розыбакиева";
+    public static final String q5 = "Темирязева-Жарокова";
+    public static final String q6 = "Жарокова-Бухар жырау";
+    public static final String q7 = "Бухар Жырау-Мусурепова";
+
     public Db() {
         initStations();
         initBuses();
-        initActiveBusses();
-    }
-
-    private void initActiveBusses() {
-//        stations.put()
     }
 
     private void initStations() {
@@ -59,6 +62,14 @@ public class Db {
         stations.put(s12, new StationDto(s12, new Location(43.237228, 76.913931)));
         stations.put(s13, new StationDto(s13, new Location(43.236126, 76.916463)));
         stations.put(s14, new StationDto(s14, new Location(43.236707, 76.922857)));
+
+        stations.put(q1, new StationDto(q1, new Location(43.217097, 76.876108)));
+        stations.put(q2, new StationDto(q2, new Location(43.220058, 76.880488)));
+        stations.put(q3, new StationDto(q3, new Location(43.224471, 76.887540)));
+        stations.put(q4, new StationDto(q4, new Location(43.224660, 76.891672)));
+        stations.put(q5, new StationDto(q5, new Location(43.225338, 76.901325)));
+        stations.put(q6, new StationDto(q6, new Location(43.230512, 76.900526)));
+        stations.put(q7, new StationDto(q7, new Location(43.231703, 76.918874)));
     }
 
     private void initBuses() {
@@ -66,31 +77,31 @@ public class Db {
         BusDto b1 = new BusDto();
         b1.from = stations.get(s1);
         b1.to = stations.get(s13);
+        b1.id = 1;
         b1.number = 92;
 
         BusDto b1r = new BusDto();
         b1r.from = stations.get(s13);
         b1r.to = stations.get(s1);
         b1r.number = 92;
+        b1r.direction = DirectionEnum.LEFT;
+        b1r.id = 2;
 
         BusDto b2 = new BusDto();
-        b2.from = stations.get(s3);
-        b2.to = stations.get(s10);
+        b2.from = stations.get(q1);
+        b2.to = stations.get(q7);
         b2.number = 100;
+        b2.id = 3;
 
-//        BusDto b3 = new BusDto();
-//        b3.to = new Location(10.11, 14.400);
-//        b3.from = new Location(10.40, 15.111);
-//        b3.number = 112;
-//
-//        BusDto b4 = new BusDto();
-//        b4.from = new Location(16.13, 13.33);
-//        b4.to = new Location(18.33, 15.22);
-//        b4.number = 18;
+        BusDto b2r = new BusDto();
+        b2r.from = stations.get(q7);
+        b2r.to = stations.get(q1);
+        b2r.number = 100;
+        b2r.id = 4;
 
         buses.add(b1);
+        buses.add(b1r);
         buses.add(b2);
-//        buses.add(b3);
-//        buses.add(b4);
+        buses.add(b2r);
     }
 }

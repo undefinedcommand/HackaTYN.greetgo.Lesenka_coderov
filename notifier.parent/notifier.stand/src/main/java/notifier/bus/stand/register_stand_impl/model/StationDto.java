@@ -1,6 +1,6 @@
 package notifier.bus.stand.register_stand_impl.model;
 
-import notifier.bus.stand.register_stand_impl.model.pojo.Location;
+import notifier.bus.controller.model.pojo.Location;
 
 public class StationDto {
     public String name;

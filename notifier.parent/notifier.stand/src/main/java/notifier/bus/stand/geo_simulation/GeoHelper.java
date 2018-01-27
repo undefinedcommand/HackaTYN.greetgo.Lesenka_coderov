@@ -1,6 +1,6 @@
 package notifier.bus.stand.geo_simulation;
 
-import notifier.bus.stand.register_stand_impl.model.pojo.Location;
+import notifier.bus.controller.model.pojo.Location;
 
 public class GeoHelper {
     public static final double EARTH_RADIUS_IN_KM = 6.371;

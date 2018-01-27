@@ -1,6 +1,6 @@
 package notifier.bus.stand.geo_simulation;
 
-import notifier.bus.stand.register_stand_impl.model.pojo.Location;
+import notifier.bus.controller.model.pojo.Location;
 import notifier.bus.stand.register_stand_impl.model.pojo.Route;
 
 public class GPSsimulator {
