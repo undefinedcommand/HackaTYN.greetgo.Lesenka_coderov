@@ -6,7 +6,4 @@
     <item
         android:id="@+id/favorites_item"
         android:title="@string/favorites_item" />
-    <item
-        android:id="@+id/history_item"
-        android:title="@string/history_item" />
 </menu>
