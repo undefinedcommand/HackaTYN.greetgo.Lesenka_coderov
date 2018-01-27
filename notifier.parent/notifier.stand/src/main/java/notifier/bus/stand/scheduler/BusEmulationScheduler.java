@@ -116,7 +116,7 @@ public class BusEmulationScheduler {
             double distanceInMeters = helper.distance(currentLocation.latitude, currentLocation.longitude,
                     busDto.currentLocation.latitude, busDto.currentLocation.longitude, 'K') * 1000;
 
-            System.out.println(distanceInMeters);
+            log.info(distanceInMeters + "m with " + busDto.number);
             if(distanceInMeters <= 700 && !busDto.recievedNotification) {
                 busDto.recievedNotification = true;
                 firebase.send_FCM_Notification(
