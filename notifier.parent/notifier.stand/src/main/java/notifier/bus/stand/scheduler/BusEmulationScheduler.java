@@ -1,10 +1,10 @@
 package notifier.bus.stand.scheduler;
 
 import notifier.bus.controller.model.pojo.Location;
-import notifier.bus.stand.geo_simulation.GeoHelper;
 import notifier.bus.stand.register_stand_impl.db.Db;
 import notifier.bus.stand.register_stand_impl.model.BusDto;
 import notifier.bus.stand.register_stand_impl.model.StationDto;
+import notifier.bus.stand.register_stand_impl.model.enums.DirectionEnum;
 import notifier.bus.stand.register_stand_impl.model.pojo.Route;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +13,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,22 +30,19 @@ public class BusEmulationScheduler {
     Route[] routes;
 
     public int[] waypointCounters;
+    boolean[] flags;
 
     public BusEmulationScheduler(Db db) {
         this.db = db;
         initCurrentLocations();
         initRoutes();
         waypointCounters = new int[this.db.buses.size()];
+        flags = new boolean[db.buses.size()];
     }
 
     //logger
     private static final Logger log = LoggerFactory.getLogger(BusEmulationScheduler.class);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
-    //params
-
-    public static final double SIMULATOR_MOVEMENT_SPEED = 0.000015; // ~0.05m - 0.1m per step
-    public static final double ARRIVAL_RADIUS_IN_KM = 0.05 / 1000;  // 0.05m
 
 
     private void initCurrentLocations() {
@@ -60,33 +59,45 @@ public class BusEmulationScheduler {
         }
     }
 
-    public void moveBuses(){
-        System.out.println();
-        List<BusDto> busDtoList = db.buses;
-        for(int i = 0; i < busDtoList.size(); i++) {
-            Location nextWaypoint = routes[i].waypoints[waypointCounters[i]].location;
-            String nextLocation = routes[i].waypoints[waypointCounters[i]].name;
-            if (GeoHelper.calcGeoDistanceInKm(currentLocations[i], nextWaypoint) < ARRIVAL_RADIUS_IN_KM) {
-                waypointCounters[i]++;
-                if (waypointCounters[i] > routes[i].waypoints.length-1) {
-                    currentLocations[i] = new Location(currentLocations[i].latitude, currentLocations[i].longitude);
-                    waypointCounters[i] = 0;
-                }
-                nextWaypoint = routes[i].waypoints[waypointCounters[i]].location;
-                nextLocation = routes[i].waypoints[waypointCounters[i]].name;
-            }
 
-            log.info("Bus number: " + busDtoList.get(i).number + " Moving to " + nextLocation + ". Distance = " + GeoHelper.calcGeoDistanceInKm(currentLocations[i], nextWaypoint) * 1000 + "m");
-            double angle = GeoHelper.calcAngleBetweenGeoLocationsInRadians(currentLocations[i], nextWaypoint);
-            double newLat = currentLocations[i].latitude + Math.sin(angle) * SIMULATOR_MOVEMENT_SPEED;
-            double newLon = currentLocations[i].longitude + Math.cos(angle) * SIMULATOR_MOVEMENT_SPEED;
-            currentLocations[i] = new Location(newLat, newLon);
-
-        }
+    @Scheduled(cron = "*/2 * * * * *")
+    public void emulation() {
+        move();
     }
 
-    @Scheduled(cron = "*/1 * * * * *")
-    public void emulation() {
-        moveBuses();
+    private void move() {
+
+        for(int i = 0; i < db.buses.size(); i++) {
+            BusDto busDto = db.buses.get(i);
+            String currentStation = routes[i].waypoints[waypointCounters[i]].name;
+
+            if(!flags[i]) {
+                waypointCounters[i]++;
+            } else {
+                --waypointCounters[i];
+            }
+
+            int routesLength = routes[i].size();
+            if(waypointCounters[i] == routesLength) {
+                changeDirection(busDto);
+                flags[i] = true;
+                waypointCounters[i] = routesLength-1;
+            }
+
+            if(waypointCounters[i] == -1) {
+                flags[i] = false;
+                changeDirection(busDto);
+                waypointCounters[i] = 0;
+            }
+
+            String nextStation = routes[i].waypoints[waypointCounters[i]].name;
+            log.info("Bus " + busDto.number + ". Current station: " + currentStation+ ". Moving to: " + nextStation);
+        }
+
+        System.out.println();
+    }
+
+    private void changeDirection(BusDto busDto) {
+        busDto.direction = busDto.direction == DirectionEnum.RIGHT ? DirectionEnum.LEFT : DirectionEnum.RIGHT;
     }
 }
