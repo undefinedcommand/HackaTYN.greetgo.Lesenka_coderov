@@ -1,5 +1,6 @@
 .idea/
 notifier.parent.ipr
 notifier.parent.iws
+notifier.parent.iml
 build/
 .gradle/
