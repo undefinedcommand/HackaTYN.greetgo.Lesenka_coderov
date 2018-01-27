@@ -1,4 +1,4 @@
-package bus.notifier.busnotifier.Services;
+package bus.notifier.busnotifier;
 
 import android.app.Service;
 import android.util.Log;

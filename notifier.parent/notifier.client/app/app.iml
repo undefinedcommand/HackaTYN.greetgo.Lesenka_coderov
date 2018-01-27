@@ -259,7 +259,6 @@
     <orderEntry type="library" name="com.squareup.okhttp3:okhttp:3.3.0@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-gass-license-11.4.2" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-location-11.4.2" level="project" />
-    <orderEntry type="library" name="com.github.ankitdubey021:GPSTracker-1.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-vision-license-11.4.2" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-storage-common-license-11.4.2" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-database-11.4.2" level="project" />

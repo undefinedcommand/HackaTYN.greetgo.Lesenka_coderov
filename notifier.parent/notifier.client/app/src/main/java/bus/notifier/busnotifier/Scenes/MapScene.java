@@ -18,11 +18,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -30,6 +35,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import org.ankit.gpslibrary.MyTracker;
 
 import bus.notifier.busnotifier.R;
+import bus.notifier.busnotifier.Services.LocationService;
 
 public class MapScene extends Fragment {
 
@@ -62,15 +68,12 @@ public class MapScene extends Fragment {
             public void onMapReady(GoogleMap map) {
                 mapScene = map;
 
-                LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-                Criteria criteria = new Criteria();
-                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-                double lat = location.getLatitude();
-                double lng = location.getLongitude();
-                Toast.makeText(getContext(), lat + " " + lng, Toast.LENGTH_LONG).show();
+                LocationService locationService = new LocationService(getContext());
+                double lat = locationService.getLatitude();
+                double lng = locationService.getLongitude();
+                CameraPosition cameraPosition = new CameraPosition.Builder().zoom(15).bearing(90).tilt(30).target(new LatLng(lat, lng)).build();
+                mapScene.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).icon(BitmapDescriptorFactory.fromResource(R.drawable.location)));
+                mapScene.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });
 

@@ -12,6 +12,7 @@
         android:layout_height="match_parent" />
 
     <com.arlib.floatingsearchview.FloatingSearchView
+
         android:id="@+id/floating_search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,10 +20,17 @@
         app:floatingSearch_searchBarMarginTop="10dp"
         app:floatingSearch_searchBarMarginRight="10dp"
         app:floatingSearch_searchHint="Number of your bus, i.e. '42'"
+        app:floatingSearch_searchInputTextSize="5sp"
         app:floatingSearch_suggestionsListAnimDuration="250"
         app:floatingSearch_showSearchKey="true"
         app:floatingSearch_leftActionMode="showHamburger"
         app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+
+    <ListView
+        android:id="@+id/bus_list"
+        android:layout_below="@+id/floating_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
         android:id="@+id/bottom_navigation_menu"

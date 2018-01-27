@@ -1,4 +1,4 @@
-package bus.notifier.busnotifier.Services;
+package bus.notifier.busnotifier;
 
 import android.app.Notification;
 import android.app.NotificationManager;
