@@ -1,7 +1,7 @@
 package notifier.bus.stand.register_stand_impl.model;
 
 import notifier.bus.controller.model.pojo.Location;
-import notifier.bus.stand.enums.DirectionEnum;
+import notifier.bus.stand.register_stand_impl.model.enums.DirectionEnum;
 import notifier.bus.stand.register_stand_impl.model.pojo.Route;
 
 /**

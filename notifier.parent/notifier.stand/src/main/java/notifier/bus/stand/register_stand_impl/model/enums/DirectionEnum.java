@@ -1,4 +1,4 @@
-package notifier.bus.stand.enums;
+package notifier.bus.stand.register_stand_impl.model.enums;
 
 /**
  * Created by daniyar on 27/01/18.

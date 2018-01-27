@@ -3,6 +3,7 @@ package notifier.bus.stand.geo_simulation;
 import notifier.bus.controller.model.pojo.Location;
 
 public class GeoHelper {
+
     public static final double EARTH_RADIUS_IN_KM = 6.371;
 
     public static double calcGeoDistanceInKm(double lat1, double lat2, double lon1, double lon2){
@@ -27,4 +28,5 @@ public class GeoHelper {
     public static double calcAngleBetweenGeoLocationsInRadians(Location location1, Location location2) {
         return calcAngleBetweenGeoLocationsInRadians(location1.latitude, location2.latitude, location1.longitude, location2.longitude);
     }
+
 }

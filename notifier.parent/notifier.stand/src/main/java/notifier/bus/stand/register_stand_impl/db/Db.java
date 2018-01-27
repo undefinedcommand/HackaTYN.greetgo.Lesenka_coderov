@@ -1,7 +1,7 @@
 package notifier.bus.stand.register_stand_impl.db;
 
 import notifier.bus.controller.model.pojo.Location;
-import notifier.bus.stand.enums.DirectionEnum;
+import notifier.bus.stand.register_stand_impl.model.enums.DirectionEnum;
 import notifier.bus.stand.register_stand_impl.model.BusDto;
 import notifier.bus.stand.register_stand_impl.model.StationDto;
 import notifier.bus.stand.register_stand_impl.model.pojo.Route;
@@ -139,9 +139,10 @@ public class Db {
         b2.route = r2;
         b2r.route = r2r;
 
-        b1.route.print();
-        b1r.route.print();
-        b2.route.print();
-        b2r.route.print();
+        buses.add(b1);
+        buses.add(b1r);
+        buses.add(b2);
+        buses.add(b2r);
+
     }
 }
