@@ -1,5 +1,6 @@
 package notifier.bus.stand.firebase;
 
+import notifier.bus.controller.model.pojo.Location;
 import notifier.bus.stand.register_stand_impl.db.Db;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -77,7 +78,7 @@ public class SendNotifications {
 
 
 
-    void send_FCM_Notification(String tokenId, String server_key, String message){
+    public void send_FCM_Notification(String tokenId, String server_key, String message, Location location){
 
 
         try{
@@ -129,6 +130,12 @@ public class SendNotifications {
             infoJson.put("title","Here is your notification.");
 
             infoJson.put("body", message);
+
+            JSONObject data = new JSONObject();
+            data.put("lat", location.latitude);
+            data.put("lon", location.longitude);
+
+            infoJson.put("data", data);
 
 
 

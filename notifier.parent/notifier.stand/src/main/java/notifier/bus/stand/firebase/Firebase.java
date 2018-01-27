@@ -39,11 +39,11 @@ public class Firebase implements ApplicationListener<ApplicationReadyEvent> {
             FirebaseApp.initializeApp(options);
 
             //sendNotifications.sendNotifications();
-            sendNotifications.send_FCM_Notification(
-                    "fRAQosWL050:APA91bGSFtfbFdbq6ZKFunq63Z88_7tdOKrCktOrGH8udKKE8f5kZJWJQwy_DVlBhsoL6PO-BFqF-zaOK1-mTj1JJwRxitBbRwoGkfTXVHZ7uphhMylndeGpNLCXAwoqbPm48Z3uNF1m",
-                    "AAAA9BPV9oU:APA91bEucwbWZ5Lh_RBywHRmzMAI6NsI66O1kd4dZ7jPqLWVguo2HSJG6-MdSqOBu1Gaew3aCOke3xkVk-fH_E_oTSttjIYv5kBz94sQWNWWxzfwOzbbXJAKqu3cMEpY6jTJL8nvVseL",
-                    "Darkhan!!!"
-            );
+//            sendNotifications.send_FCM_Notification(
+//                    "fRAQosWL050:APA91bGSFtfbFdbq6ZKFunq63Z88_7tdOKrCktOrGH8udKKE8f5kZJWJQwy_DVlBhsoL6PO-BFqF-zaOK1-mTj1JJwRxitBbRwoGkfTXVHZ7uphhMylndeGpNLCXAwoqbPm48Z3uNF1m",
+//                    "AAAA9BPV9oU:APA91bEucwbWZ5Lh_RBywHRmzMAI6NsI66O1kd4dZ7jPqLWVguo2HSJG6-MdSqOBu1Gaew3aCOke3xkVk-fH_E_oTSttjIYv5kBz94sQWNWWxzfwOzbbXJAKqu3cMEpY6jTJL8nvVseL",
+//                    "Darkhan!!!"
+//            );
         } catch (Exception e) {
             e.printStackTrace();
         }

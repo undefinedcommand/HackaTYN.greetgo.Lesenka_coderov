@@ -16,6 +16,7 @@ public class BusDto {
     public DirectionEnum direction = DirectionEnum.RIGHT;
     public Route route;
     public Location currentLocation;
+    public boolean recievedNotification = false;
 
     public int getNumber() {
         return number;
