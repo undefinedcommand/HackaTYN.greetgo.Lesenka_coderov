@@ -15,6 +15,7 @@ dependencies {
     compile project(':notifier.controller')
     compile("org.springframework.boot:spring-boot-starter-web")
 
+    compile 'com.google.firebase:firebase-admin:5.8.0'
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]

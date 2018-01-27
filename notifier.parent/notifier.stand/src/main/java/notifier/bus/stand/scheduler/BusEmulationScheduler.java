@@ -60,7 +60,7 @@ public class BusEmulationScheduler {
     }
 
 
-    @Scheduled(cron = "*/2 * * * * *")
+    @Scheduled(cron = "*/30 * * * * *")
     public void emulation() {
         move();
     }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface BusRegister {
     public List<BusInfo> getBusesList();
+
 }

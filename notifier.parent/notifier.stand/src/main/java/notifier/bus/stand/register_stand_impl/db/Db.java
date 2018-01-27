@@ -40,6 +40,8 @@ public class Db {
     public static final String q6 = "Жарокова-Бухар жырау";
     public static final String q7 = "Бухар Жырау-Мусурепова";
 
+    public Set<String> tokens = new HashSet<>();
+
     public Db() {
         initStations();
         initBuses();

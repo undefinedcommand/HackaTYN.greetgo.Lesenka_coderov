@@ -2,6 +2,7 @@ package notifier.bus.controller.controller;
 
 import notifier.bus.controller.model.BusInfo;
 import notifier.bus.controller.register.BusRegister;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class BusController {
         this.busRegister = busRegister;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/rest/bus/list")
     public List<BusInfo> createAuthenticationToken() {
         return busRegister.getBusesList();
