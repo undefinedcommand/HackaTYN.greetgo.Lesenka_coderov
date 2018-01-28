@@ -1,5 +1,6 @@
 package notifier.bus.stand.register_stand_impl;
 
+import notifier.bus.controller.model.pojo.Location;
 import notifier.bus.controller.register.TokenRegister;
 import notifier.bus.stand.register_stand_impl.db.Db;
 import org.springframework.stereotype.Service;

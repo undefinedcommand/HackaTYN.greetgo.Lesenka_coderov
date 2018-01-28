@@ -26,10 +26,7 @@ public class Firebase implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent event) {
 
         try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            File file = new File(classLoader.getResource("hackatun-firebase-adminsdk-x901s-7ca43c5fd7.json").getFile());
-
-            FileInputStream serviceAccount = new FileInputStream(file);
+            FileInputStream serviceAccount = new FileInputStream(System.getProperty("user.home") + "/hackatun-firebase-adminsdk-x901s-7ca43c5fd7.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))

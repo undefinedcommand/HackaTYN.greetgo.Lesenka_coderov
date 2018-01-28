@@ -2,12 +2,22 @@ def nowDate = new Date()
 def nowFormattedDate = nowDate.format("yyyy-MM-dd/HH:mm:ss")
 def teamName = "lesenkaCoderov"
 
+
 allprojects {
   apply plugin: 'idea'
   apply plugin: 'java'
   apply plugin: 'maven'
-      
-  version = '001'
+
+    compileJava {
+        sourceCompatibility = '1.8'
+    }
+    jar {
+        baseName = 'nitifier'
+        version = "0.1.0"
+    }
+
+
+    version = '001'
         
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
@@ -21,6 +31,10 @@ allprojects {
 }
 
 subprojects {
+
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
+
     repositories {
         mavenCentral()
     }
@@ -34,6 +48,19 @@ subprojects {
         manifest {
             attributes 'Implementation-Title': project.name, 'Implementation-Version': version,
             'Implementation-Vendor': teamName, 'Built-By': System.getProperty("user.name"), 'Built-At': nowFormattedDate
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ["src/main/java"]
+            resources.srcDirs = ["src/main/java", "src/main/resources"]
+            output.resourcesDir = "build/classes/main"
+        }
+        test {
+            java.srcDirs = ["src/test/java"]
+            resources.srcDirs = ["src/test/java", "src/test/resources"]
+            output.resourcesDir = "build/classes/test"
         }
     }
     
