@@ -4,4 +4,13 @@
     android:layout_height="match_parent"
     tools:context="bus.notifier.busnotifier.Scenes.RingScene">
 
+    <ListView
+        android:layout_marginTop="75dp"
+        android:id="@+id/bus_list"
+        android:layout_below="@+id/floating_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
 </RelativeLayout>

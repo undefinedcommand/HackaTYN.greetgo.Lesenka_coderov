@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationViewEx bottomNavigationMenu;
     private Fragment selectedScene = null;
     private FloatingSearchView floatingSearchView;
-    private ListView listBuses;
-    private BusAdapter busAdapter;
-    private ArrayList<Bus> listBusesArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
     private void initializeVariables() {
         bottomNavigationMenu = (BottomNavigationViewEx) findViewById(R.id.bottom_navigation_menu);
         floatingSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
-        listBuses = (ListView) findViewById(R.id.bus_list);
-        busAdapter = new BusAdapter(getApplicationContext(), listBusesArray);
-        listBuses.setAdapter(busAdapter);
         selectedScene = new MapScene();
         changeScene(selectedScene);
     }

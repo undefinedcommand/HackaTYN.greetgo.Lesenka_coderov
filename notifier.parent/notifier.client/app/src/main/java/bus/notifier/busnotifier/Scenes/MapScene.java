@@ -28,11 +28,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.iid.FirebaseInstanceId;
-
-import org.ankit.gpslibrary.MyTracker;
 
 import bus.notifier.busnotifier.R;
 import bus.notifier.busnotifier.Services.LocationService;
@@ -41,11 +36,6 @@ public class MapScene extends Fragment {
 
     private SupportMapFragment mapView;
     private GoogleMap mapScene;
-    private FusedLocationProviderClient mFusedLocationClient;
-
-
-    private static final int REQUEST_CODE_PERMISSION = 2;
-    String mPermission = Manifest.permission.ACCESS_FINE_LOCATION;
 
     public MapScene() {
 
@@ -60,8 +50,6 @@ public class MapScene extends Fragment {
         mapView.onResume();
 
         MapsInitializer.initialize(getActivity().getApplicationContext());
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override

@@ -12,5 +12,4 @@
         tools:context="bus.notifier.busnotifier.MainActivity"
         class="com.google.android.gms.maps.SupportMapFragment"/>
 
-
 </RelativeLayout>

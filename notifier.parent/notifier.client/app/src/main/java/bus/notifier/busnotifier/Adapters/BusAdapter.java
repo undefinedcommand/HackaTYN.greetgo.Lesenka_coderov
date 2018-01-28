@@ -18,14 +18,16 @@ import bus.notifier.busnotifier.R;
 public class BusAdapter extends ArrayAdapter<Bus> {
 
     private SharedPreferences preferences;
+    private ArrayList<Bus> bus_list;
 
     public BusAdapter(@NonNull Context context, ArrayList<Bus> bus_list) {
         super(context, 0, bus_list);
+        this.bus_list = bus_list;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Bus bus = getItem(position);
+        Bus bus = bus_list.get(position);
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_buses, parent, false);
         }
